@@ -1,0 +1,23 @@
+nasm -f elf64 hello.asm 		# assemble the program  
+ld -s -o hello hello.o 		# link the object file nasm produced into an executable file  
+./hello 				# hello is an executable file
+
+
+mov is for setting some data in a memory address
+jmp is for going to the given function
+	for example: jmp count;
+rax is where you put in the return value
+cmp is for comparing 2 bytes with each other
+    for example: cmp BYTE[rdi + rax],0
+
+ax is the primary accumulator
+bx is known as the base register
+cx is known as the count register
+dx is known as the data register
+
+rdi is the first argument
+rsi is the second argument
+rdx is the thrid argument
+rcx is the fourth argument
+r8  is the fifth argument
+r9  is the sixth argument

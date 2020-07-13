@@ -1,28 +1,27 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         ::::::::             ;
-;    ft_strlen.s                                        :+:    :+:             ;
+;    ft_strcpy.s                                        :+:    :+:             ;
 ;                                                      +:+                     ;
 ;    By: liz <liz@student.codam.nl>                   +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/07/06 12:19:13 by liz           #+#    #+#                  ;
-;    Updated: 2020/07/09 14:04:19 by liz           ########   odam.nl          ;
+;    Created: 2020/07/08 16:10:36 by liz           #+#    #+#                  ;
+;    Updated: 2020/07/09 11:01:15 by liz           ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 segment .text
- global ft_strlen
 
-ft_strlen:
- xor rax,rax
- jmp count
-
-count:
- cmp BYTE [rdi + rax], 0
- je exit
- inc rax
- jmp count
-
-exit:
- ret
-	
+global	ft_strcpy
+ft_strcpy:
+	mov rax,-1
+loop:
+	inc	rax
+	mov dl,BYTE[rsi, rax]
+	mov BYTE[rdi, rax], dl
+	cmp dl,0
+	je	return
+	jmp loop
+return:
+	mov rax,rdi
+	ret

@@ -1,28 +1,28 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         ::::::::             ;
-;    ft_strlen.s                                        :+:    :+:             ;
+;    hello.s                                            :+:    :+:             ;
 ;                                                      +:+                     ;
 ;    By: liz <liz@student.codam.nl>                   +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/07/06 12:19:13 by liz           #+#    #+#                  ;
-;    Updated: 2020/07/09 14:04:19 by liz           ########   odam.nl          ;
+;    Created: 2020/06/16 13:21:08 by liz           #+#    #+#                  ;
+;    Updated: 2020/07/06 12:18:54 by liz           ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-segment .text
- global ft_strlen
 
-ft_strlen:
- xor rax,rax
- jmp count
+SECTION .TEXT
+	GLOBAL _start
 
-count:
- cmp BYTE [rdi + rax], 0
- je exit
- inc rax
- jmp count
+_start:
+	mov eax,4            ; write()
+	mov ebx,1            ; STDOUT
+	mov ecx,hello
+	mov edx,helloLen
+	int 80h                 ; Interrupt
+        ret                        ; Return control
 
-exit:
- ret
-	
+
+SECTION .DATA
+	hello:     db 'Hello world!',10
+	helloLen:  equ $-hello
