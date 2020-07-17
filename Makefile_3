@@ -1,39 +1,39 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile_3                                         :+:    :+:             #
 #                                                      +:+                     #
-#    By: lbisscho <lbisscho@student.codam.nl>         +#+                      #
+#    By: liz <liz@student.codam.nl>                   +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/07/15 10:39:34 by lbisscho      #+#    #+#                  #
-#    Updated: 2020/07/15 15:40:44 by lbisscho      ########   odam.nl          #
+#    Created: 2020/06/16 13:12:56 by liz           #+#    #+#                  #
+#    Updated: 2020/07/15 11:05:26 by lbisscho      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libasm.a
 
-SRCS = ft_strlen.s ft_strcpy.s ft_strcmp_2.s ft_strdup.s ft_write.s \
-
-OBJ = $(SRCS:.s=.o)
-
-NASM = nasm -fmacho64
-
-AR = ar -rcs
+SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_strdup.s
 
 MAIN = main.c
 
-all: $(NAME)
+OBJ = $(SRCS:.s=.o)
 
-$(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
-	
-%.o: %.s
-	$(NASM) $?
-test:
-	gcc main.c -I libasm.h -L. -lasm -o libasm
+INCL = libasm.h
+
+FLAGS = gcc -Wall -Werror -Wextra
+
+all: $(NAME)
+$(NAME): $(OBJ) $(SRCS) $(MAIN)
+	ar rcs $(NAME) $(OBJ)
+	gcc $(MAIN) libasm.a -o output
+%.o:%.s
+	nasm -f macho64 -s $<
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf output
+
 fclean: clean
 	rm -rf $(NAME)
+
 re: fclean all

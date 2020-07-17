@@ -6,14 +6,14 @@
 ;    By: liz <liz@student.codam.nl>                   +#+                      ;
 ;                                                    +#+                       ;
 ;    Created: 2020/07/08 16:10:36 by liz           #+#    #+#                  ;
-;    Updated: 2020/07/09 11:01:15 by liz           ########   odam.nl          ;
+;    Updated: 2020/07/15 11:25:56 by lbisscho      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 segment .text
 
-global	ft_strcpy
-ft_strcpy:
+global	_ft_strcpy
+_ft_strcpy:
 	mov rax,-1
 loop:
 	inc	rax

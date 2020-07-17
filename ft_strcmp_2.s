@@ -1,33 +1,33 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         ::::::::             ;
-;    ft_strcmp.s                                        :+:    :+:             ;
+;    ft_strcmp_2.s                                      :+:    :+:             ;
 ;                                                      +:+                     ;
-;    By: liz <liz@student.codam.nl>                   +#+                      ;
+;    By: lbisscho <lbisscho@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/07/08 17:45:41 by liz           #+#    #+#                  ;
-;    Updated: 2020/07/15 11:26:26 by lbisscho      ########   odam.nl          ;
+;    Created: 2020/07/15 15:24:01 by lbisscho      #+#    #+#                  ;
+;    Updated: 2020/07/15 15:29:43 by lbisscho      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 segment .text
-global	_ft_strcmp
+global _ft_strcmp
 _ft_strcmp:
-	mov rax,0
-compare:
-	mov al,BYTE[rdi]
-	mov bl,BYTE[rsi]
-	cmp al,0
-	je exit
-	cmp bl,0
-	je exit
-	cmp al,bl
-	jne exit
-	inc rdi
-	inc rsi
-	jmp compare
+    mov rax,0
+loop:
+    mov bl,BYTE[rdi]
+    mov al,BYTE[rsi]
+    cmp bl,0
+    je exit
+    cmp al,0
+    je exit
+    cmp bl,al
+    jne exit
+    inc rdi
+    inc rsi
+    jmp loop
 exit:
-	movzx rax,al
-	movzx rbx,bl
-	sub rax,rbx
-	ret
+    movzx rax,bl
+    movzx rbx,al
+    sub rax,rbx
+    ret
