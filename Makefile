@@ -6,13 +6,13 @@
 #    By: lbisscho <lbisscho@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/15 10:39:34 by lbisscho      #+#    #+#                  #
-#    Updated: 2020/07/15 15:40:44 by lbisscho      ########   odam.nl          #
+#    Updated: 2020/07/18 16:21:19 by lbisscho      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libasm.a
 
-SRCS = ft_strlen.s ft_strcpy.s ft_strcmp_2.s ft_strdup.s ft_write.s \
+SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_strdup.s ft_write.s ft_read.s \
 
 OBJ = $(SRCS:.s=.o)
 
@@ -36,4 +36,5 @@ clean:
 	rm -rf $(OBJ)
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf libasm
 re: fclean all

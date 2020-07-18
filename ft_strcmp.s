@@ -6,12 +6,12 @@
 ;    By: liz <liz@student.codam.nl>                   +#+                      ;
 ;                                                    +#+                       ;
 ;    Created: 2020/07/08 17:45:41 by liz           #+#    #+#                  ;
-;    Updated: 2020/07/15 11:26:26 by lbisscho      ########   odam.nl          ;
+;    Updated: 2020/07/18 12:50:53 by lbisscho      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-segment .text
-global	_ft_strcmp
+segment.text:
+	global	_ft_strcmp
 _ft_strcmp:
 	mov rax,0
 compare:
