@@ -6,7 +6,7 @@
 ;    By: liz <liz@student.codam.nl>                   +#+                      ;
 ;                                                    +#+                       ;
 ;    Created: 2020/07/06 12:19:13 by liz           #+#    #+#                  ;
-;    Updated: 2020/07/15 11:26:11 by lbisscho      ########   odam.nl          ;
+;    Updated: 2020/07/18 17:24:04 by lbisscho      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -14,7 +14,7 @@ segment .text
  global _ft_strlen
 
 _ft_strlen:
- xor rax,rax
+ mov rax,0
  jmp count
 
 count:

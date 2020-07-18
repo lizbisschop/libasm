@@ -126,14 +126,15 @@ void	check_ft_write(void)
 	i = ft_write(3, str, ft_strlen(str));
 	j = write(3, str, strlen(str));
 	printf("%d | %d\n", i, j);
+	printf("%d\n", errno);
 }
 
 int main(void)
 {
-	// check_ft_strlen();
+	check_ft_strlen();
 	check_ft_strcpy();
 	// check_ft_strcmp();
 	// check_ft_strdup();
-	// check_ft_write();
+	check_ft_write();
 	return (0);
 }
