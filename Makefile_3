@@ -1,0 +1,39 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile_3                                         :+:    :+:             #
+#                                                      +:+                     #
+#    By: liz <liz@student.codam.nl>                   +#+                      #
+#                                                    +#+                       #
+#    Created: 2020/06/16 13:12:56 by liz           #+#    #+#                  #
+#    Updated: 2020/07/15 11:05:26 by lbisscho      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libasm.a
+
+SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_strdup.s
+
+MAIN = main.c
+
+OBJ = $(SRCS:.s=.o)
+
+INCL = libasm.h
+
+FLAGS = gcc -Wall -Werror -Wextra
+
+all: $(NAME)
+$(NAME): $(OBJ) $(SRCS) $(MAIN)
+	ar rcs $(NAME) $(OBJ)
+	gcc $(MAIN) libasm.a -o output
+%.o:%.s
+	nasm -f macho64 -s $<
+
+clean:
+	rm -rf $(OBJ)
+	rm -rf output
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
