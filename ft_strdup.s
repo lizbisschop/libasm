@@ -3,28 +3,27 @@
 ;                                                         ::::::::             ;
 ;    ft_strdup.s                                        :+:    :+:             ;
 ;                                                      +:+                     ;
-;    By: liz <liz@student.codam.nl>                   +#+                      ;
+;    By: lbisscho <lbisscho@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/07/07 12:04:35 by liz           #+#    #+#                  ;
-;    Updated: 2020/07/13 11:34:49 by liz           ########   odam.nl          ;
+;    Created: 2020/08/07 14:36:47 by lbisscho      #+#    #+#                  ;
+;    Updated: 2020/08/08 12:59:51 by lbisscho      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-segment .text
-global	ft_strdup
-extern ft_strlen
-extern ft_strcpy
-extern malloc
-
-ft_strdup:
-	push rdi
-	call ft_strlen	;put the length of string rdi in rax
-	inc rax			;increment rax with 1 for \0 byte
-	mov	rdi,rax		;set the len to malloc 
-	call malloc		;malloc the right amount of len
-	pop rdi
-	mov	rsi,rdi
-	mov rdi,rax
-	call ft_strcpy
-	ret
-
+segment.text:
+    global _ft_strdup
+    extern _ft_strlen
+    extern _ft_strcpy
+    extern _malloc
+    extern _printf
+_ft_strdup:
+   push rdi
+   call _ft_strlen
+   inc rax
+   mov rdi,rax
+   call _malloc
+   pop rdi
+   mov rsi, rdi
+   mov rdi,rax
+   call _ft_strcpy
+   ret

@@ -3,18 +3,17 @@
 ;                                                         ::::::::             ;
 ;    ft_strlen.s                                        :+:    :+:             ;
 ;                                                      +:+                     ;
-;    By: liz <liz@student.codam.nl>                   +#+                      ;
+;    By: lbisscho <lbisscho@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/07/06 12:19:13 by liz           #+#    #+#                  ;
-;    Updated: 2020/07/09 14:04:19 by liz           ########   odam.nl          ;
+;    Created: 2020/08/07 12:28:55 by lbisscho      #+#    #+#                  ;
+;    Updated: 2020/08/07 12:31:23 by lbisscho      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-segment .text
- global ft_strlen
-
-ft_strlen:
- xor rax,rax
+segment.text:
+    global _ft_strlen
+_ft_strlen:
+ mov rax,0
  jmp count
 
 count:
@@ -25,4 +24,3 @@ count:
 
 exit:
  ret
-	
