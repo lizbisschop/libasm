@@ -6,7 +6,7 @@
 ;    By: lbisscho <lbisscho@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
 ;    Created: 2020/08/07 14:36:47 by lbisscho      #+#    #+#                  ;
-;    Updated: 2020/08/08 12:59:51 by lbisscho      ########   odam.nl          ;
+;    Updated: 2020/08/24 13:38:30 by lbisscho      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -15,7 +15,6 @@ segment.text:
     extern _ft_strlen
     extern _ft_strcpy
     extern _malloc
-    extern _printf
 _ft_strdup:
    push rdi
    call _ft_strlen

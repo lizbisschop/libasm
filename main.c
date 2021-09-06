@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: lbisscho <lbisscho@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2020/08/24 13:27:01 by lbisscho      #+#    #+#                 */
+/*   Updated: 2020/08/24 13:37:36 by lbisscho      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "libasm.h"
 #include <stdlib.h>
@@ -6,17 +18,6 @@
 #include <unistd.h>
 #include <errno.h>
 
-void	ft_putstr(char *str)
-{
-	int i;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-}
-
 void	check_ft_strlen(void)
 {
 	int i;
@@ -24,7 +25,7 @@ void	check_ft_strlen(void)
 	char *string = "Hello this is a string";
 	i = ft_strlen(string);
 	j = strlen(string);
-	ft_putstr("\e[1;033m====================Testing ft_strlen====================\e[0m\n");
+	printf("\e[1;033m====================Testing ft_strlen====================\e[0m\n");
 	printf("\e[1;32m%s\n\e[1;31mmine = %d\nreal = %d\e[0m\n", string,i, j);
 	if (i == j)
 	i = ft_strlen("");
@@ -50,11 +51,15 @@ void	check_ft_strcpy(void)
 	ft_strcpy(str1, "this is a test");
 	strcpy(str2, "This is a test");
 	printf("\e[1;033m====================Testing ft_strcpy====================\e[0m\n");
-	printf("\e[1;32m2 normal strings\n\e[1;31mmine = %s\nreal = %s\e[0m\n", str1, str2);
+	printf("\e[1;32m2 Normal strings\n\e[1;31mmine = %s\nreal = %s\e[0m\n", str1, str2);
 	ft_strcpy(str1, "\0");
 	strcpy(str2, "\0");
 	printf("\e[1;32mCopying NULL\n\e[1;31mmine = %s\nreal = %s\e[0m\n", str1, str2);
-
+	ft_strcpy(str1, "this is a test");
+	strcpy(str2, "This is a test");
+	ft_strcpy(str1, "Move this");
+	strcpy(str2, "Move this");
+	printf("\e[1;32mSecond string is shorter\n\e[1;31mmine = %s\nreal = %s\e[0m\n", str1, str2);
 }
 
 void 	check_ft_strcmp(void)
@@ -78,6 +83,11 @@ void 	check_ft_strcmp(void)
 	i = ft_strcmp(str1, str2);
 	j = strcmp(str1, str2);
 	printf("\e[1;32mFirst string is NULL\n\e[1;31mmine = %d\nreal = %d\e[0m\n", i, j);
+	str1 = "\0";
+	str2 = "\0";
+	i = ft_strcmp(str1, str2);
+	j = strcmp(str1, str2);
+	printf("\e[1;32mBoth are NULL\n\e[1;31mmine = %d\nreal = %d\e[0m\n", i, j);
 }
 
 void	check_ft_strdup()
@@ -94,28 +104,33 @@ void	check_ft_strdup()
 	printf("\e[1;32mString is NULL\n\e[1;31mmine = %s\nreal = %s\e[0m\n", newstr, newstr_2);
 	newstr = ft_strdup("null");
 	newstr_2 = strdup("null");
-	printf("\e[1;32mString is NULL\n\e[1;31mmine = %s\nreal = %s\e[0m\n", newstr, newstr_2);
+	printf("\e[1;32mString is empty\n\e[1;31mmine = %s\nreal = %s\e[0m\n", newstr, newstr_2);
 	newstr = ft_strdup("");
 	newstr_2 = strdup("");	
-	printf("\e[1;32mEmpty string\n\e[1;31mmine = %s\nreal = %s\e[0m\n", newstr, newstr_2);
 }
 
 void	check_ft_write(void)
 {
-	char *str = "\e[1;31mThis is a s tring that will be written hihi\n";
+	char *str = "\e[1;31mThis is a string that will be written hihi\n";
 	int i;
 	int j;
+	int error_write;
+	int error_ft_write;
 	printf("\e[1;033m====================Testing ft_write=====================\e[0m\n");
 	printf("\e[1;32mJust a normal string\n\e[0m");
 	i = ft_write(0, str, ft_strlen(str));
-	printf("\e[1;31mmine : %d | %s\n", i, strerror(errno));
+	error_ft_write = errno;
+	printf("\e[1;31mmine : %d | %s\n", i, strerror(error_ft_write));
 	j = write(0, str, strlen(str));
-	printf("real : %d | %s\n\e[0m", j, strerror(errno));
-	printf("\e[1;32mWrong file discriptor\n\e[0m");
+	error_write = errno;
+	printf("real : %d | %s\n\e[0m", j, strerror(error_write));
+	printf("\e[1;32mBad file discriptor\n\e[0m");
 	i = ft_write(-1, str, ft_strlen(str));
-	printf("\e[1;31mmine : %d | %s\n", i, strerror(errno));
+	error_ft_write = errno;
+	printf("\e[1;31mmine : %d | %s\n", i, strerror(error_ft_write));
 	j = write(-1, str, strlen(str));
-	printf("real : %d | %s\n\e[0m", j, strerror(errno));
+	error_write = errno;
+	printf("real : %d | %s\n\e[0m", j, strerror(error_write));
 
 }
 
@@ -131,21 +146,20 @@ void 	check_ft_read(void)
 	printf("\e[1;033m====================Testing ft_read=====================\e[0m\n");
 	int i;
 	int j;
+	int error_read;
+	int error_ft_read;
 	printf("\e[1;32mNormal input from a file\n\e[0m");
 	i = ft_read(fd_mine, str, 5);
-	printf("\e[1;31mmine : %d | %s\n", i, strerror(errno));
+	printf("\e[1;31mmine : %d | has been read: %s\n", i, str);
 	j = read(fd_real, str2, 5);
-	printf("\e[1;31mreal : %d | %s\n", j, strerror(errno));
+	printf("\e[1;31mreal : %d | has bene read: %s\n", j, str);
 	printf("\e[1;32mBad file descriptor\n\e[0m");
 	i = ft_read(42, NULL, 7);
-	printf("\e[1;31mmine : %d | %s\n", i, strerror(errno));
+	error_ft_read = errno;
+	printf("\e[1;31mmine : %d | %s\n", i, strerror(error_ft_read));
 	j = read(42, NULL, 7);
-	printf("\e[1;31mreal : %d | %s\n", j, strerror(errno));
-	// 	printf("\e[1;32mBad adress\n\e[0m");
-	// i = ft_read(0, "\0", 5);
-	// printf("\e[1;31mmine : %d | %s\n", i, strerror(errno));
-	// j = read(0, "\0", 5);
-	// printf("\e[1;31mreal : %d | %s\n", j, strerror(errno));
+	error_read = errno;
+	printf("\e[1;31mreal : %d | %s\n", j, strerror(error_read));
 }
 
 int main(void)

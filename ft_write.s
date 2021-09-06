@@ -6,7 +6,7 @@
 ;    By: lbisscho <lbisscho@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
 ;    Created: 2020/08/07 15:18:06 by lbisscho      #+#    #+#                  ;
-;    Updated: 2020/08/08 14:26:12 by lbisscho      ########   odam.nl          ;
+;    Updated: 2020/08/24 11:32:39 by lbisscho      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -22,7 +22,7 @@ _error_handle:
     mov rdi,rax
     push rdi
     call ___error
-    pop rdi
     mov [rax],rdi
+    pop rdi
     mov rax,-1
     ret
